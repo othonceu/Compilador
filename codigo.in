@@ -1,0 +1,17 @@
+e = 10 + 2
+a = 2.22
+FOR i IN e {
+	IF i > a {
+		i = i + 2
+		IF FALSE {
+			i = 1
+		}
+	} ELSE {
+		u = 2
+	}
+}
+a = 0
+WHILE a < 100 {
+	e = e * 2
+	a = a + 1
+}

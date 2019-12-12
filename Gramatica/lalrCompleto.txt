@@ -1,0 +1,1189 @@
+============================================================
+GOLD Parser Builder
+Version 5.2.0.
+============================================================
+
+
+========================================
+Terminals
+========================================
+
+ 0      (EOF)
+ 1      (Error)
+ 2      Whitespace
+ 3      '-'
+ 4      '$'
+ 5      '('
+ 6      ')'
+ 7      '*'
+ 8      '/'
+ 9      '{'
+ 10     '}'
+ 11     '+'
+ 12     '<'
+ 13     '='
+ 14     '=='
+ 15     '>'
+ 16     BREAK
+ 17     ELSE
+ 18     FALSE
+ 19     FOR
+ 20     IF
+ 21     IN
+ 22     num
+ 23     TRUE
+ 24     var
+ 25     WHILE
+
+
+========================================
+Nonterminals
+========================================
+
+26      <attr>
+27      <break>
+28      <cond>
+29      <cond2>
+30      <condS>
+31      <E>
+32      <EL>
+33      <escopo>
+34      <F>
+35      <init>
+36      <laco>
+37      <logcond>
+38      <op>
+39      <S>
+40      <V>
+
+
+========================================
+Rules
+========================================
+
+0       <escopo> ::= <escopo> <op>
+1       <escopo> ::= 
+2       <op> ::= <attr>
+3       <op> ::= <cond>
+4       <op> ::= <laco>
+5       <E> ::= <E> '+' <F>
+6       <E> ::= <E> '-' <F>
+7       <E> ::= <E> '*' <F>
+8       <E> ::= <E> '/' <F>
+9       <E> ::= <F>
+10      <F> ::= '(' <E> ')'
+11      <F> ::= <V>
+12      <V> ::= var
+13      <V> ::= num
+14      <attr> ::= var '=' <E>
+15      <condS> ::= '<'
+16      <condS> ::= '>'
+17      <condS> ::= '=='
+18      <logcond> ::= <V> <condS> <V>
+19      <logcond> ::= TRUE
+20      <logcond> ::= FALSE
+21      <cond> ::= IF <logcond> '{' <escopo> '}' <cond2>
+22      <cond2> ::= ELSE '{' <escopo> '}'
+23      <cond2> ::= 
+24      <EL> ::= '{' <escopo> <break> '}'
+25      <laco> ::= WHILE <logcond> <EL>
+26      <laco> ::= FOR var IN var <EL>
+27      <break> ::= BREAK
+28      <break> ::= 
+29      <S> ::= <escopo>
+30      <init> ::= <S> '$'
+
+
+========================================
+DFA States
+========================================
+
+State 0
+        Goto 1       &09 .. &0D, &20, &85, &A0, &1680, &180E, &2000 .. &200A, &2026, &2028, &2029, &202F, &205F, &3000
+        Goto 2       -
+        Goto 3       $
+        Goto 4       (
+        Goto 5       )
+        Goto 6       *
+        Goto 7       /
+        Goto 8       {
+        Goto 9       }
+        Goto 10      +
+        Goto 11      <
+        Goto 12      >
+        Goto 13      Bb
+        Goto 18      Ee
+        Goto 22      Nn
+        Goto 25      Tt
+        Goto 29      Vv
+        Goto 32      Ww
+        Goto 37      =
+        Goto 39      Ff
+        Goto 46      Ii
+
+
+State 1
+        Goto 1       &09 .. &0D, &20, &85, &A0, &1680, &180E, &2000 .. &200A, &2026, &2028, &2029, &202F, &205F, &3000
+        Accept Whitespace
+
+
+State 2
+        Accept '-'
+
+
+State 3
+        Accept '$'
+
+
+State 4
+        Accept '('
+
+
+State 5
+        Accept ')'
+
+
+State 6
+        Accept '*'
+
+
+State 7
+        Accept '/'
+
+
+State 8
+        Accept '{'
+
+
+State 9
+        Accept '}'
+
+
+State 10
+        Accept '+'
+
+
+State 11
+        Accept '<'
+
+
+State 12
+        Accept '>'
+
+
+State 13
+        Goto 14      Rr
+
+
+State 14
+        Goto 15      Ee
+
+
+State 15
+        Goto 16      Aa
+
+
+State 16
+        Goto 17      Kk
+
+
+State 17
+        Accept BREAK
+
+
+State 18
+        Goto 19      Ll
+
+
+State 19
+        Goto 20      Ss
+
+
+State 20
+        Goto 21      Ee
+
+
+State 21
+        Accept ELSE
+
+
+State 22
+        Goto 23      Uu
+
+
+State 23
+        Goto 24      Mm
+
+
+State 24
+        Accept num
+
+
+State 25
+        Goto 26      Rr
+
+
+State 26
+        Goto 27      Uu
+
+
+State 27
+        Goto 28      Ee
+
+
+State 28
+        Accept TRUE
+
+
+State 29
+        Goto 30      Aa
+
+
+State 30
+        Goto 31      Rr
+
+
+State 31
+        Accept var
+
+
+State 32
+        Goto 33      Hh
+
+
+State 33
+        Goto 34      Ii
+
+
+State 34
+        Goto 35      Ll
+
+
+State 35
+        Goto 36      Ee
+
+
+State 36
+        Accept WHILE
+
+
+State 37
+        Goto 38      =
+        Accept '='
+
+
+State 38
+        Accept '=='
+
+
+State 39
+        Goto 40      Aa
+        Goto 44      Oo
+
+
+State 40
+        Goto 41      Ll
+
+
+State 41
+        Goto 42      Ss
+
+
+State 42
+        Goto 43      Ee
+
+
+State 43
+        Accept FALSE
+
+
+State 44
+        Goto 45      Rr
+
+
+State 45
+        Accept FOR
+
+
+State 46
+        Goto 47      Ff
+        Goto 48      Nn
+
+
+State 47
+        Accept IF
+
+
+State 48
+        Accept IN
+
+
+
+
+========================================
+LALR States
+========================================
+
+State 0
+        <S'> ::= _ <init> (EOF)                                   <S'> ::= ^ <init> (EOF)
+        <escopo> ::= _ <escopo> <op>                              <escopo> ::= ^ <escopo> <op>
+        <escopo> ::= _                                            <escopo> ::= ^
+        <S> ::= _ <escopo>                                        <S> ::= ^ <escopo>
+        <init> ::= _ <S> '$'                                      <init> ::= ^ <S> '$'
+
+        <escopo> g 1
+        <init> g 2
+        <S> g 3
+        '$' r 1
+        FOR r 1
+        IF r 1
+        var r 1
+        WHILE r 1
+
+
+State 1
+        Prior States: 0
+
+        <escopo> ::= <escopo> _ <op>                              <escopo> ::= <escopo> ^ <op>
+        <S> ::= <escopo> _                                        <S> ::= <escopo> ^
+        <op> ::= _ <attr>                                         <op> ::= ^ <attr>
+        <op> ::= _ <cond>                                         <op> ::= ^ <cond>
+        <op> ::= _ <laco>                                         <op> ::= ^ <laco>
+        <attr> ::= _ var '=' <E>                                  <attr> ::= ^ var '=' <E>
+        <cond> ::= _ IF <logcond> '{' <escopo> '}' <cond2>        <cond> ::= ^ IF <logcond> '{' <escopo> '}' <cond2>
+        <laco> ::= _ WHILE <logcond> <EL>                         <laco> ::= ^ WHILE <logcond> <EL>
+        <laco> ::= _ FOR var IN var <EL>                          <laco> ::= ^ FOR var IN var <EL>
+
+        FOR s 4
+        IF s 5
+        var s 6
+        WHILE s 7
+        <attr> g 8
+        <cond> g 9
+        <laco> g 10
+        <op> g 11
+        '$' r 29
+
+
+State 2
+        Prior States: 0
+
+        <S'> ::= <init> _ (EOF)                                   <S'> ::= <init> ^ (EOF)
+
+        (EOF) a
+
+
+State 3
+        Prior States: 0
+
+        <init> ::= <S> _ '$'                                      <init> ::= <S> ^ '$'
+
+        '$' s 12
+
+
+State 4
+        Prior States: 1, 35, 42, 56
+
+        <laco> ::= FOR _ var IN var <EL>                          <laco> ::= FOR ^ var IN var <EL>
+
+        var s 13
+
+
+State 5
+        Prior States: 1, 35, 42, 56
+
+        <cond> ::= IF _ <logcond> '{' <escopo> '}' <cond2>        <cond> ::= IF ^ <logcond> '{' <escopo> '}' <cond2>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+        <logcond> ::= _ <V> <condS> <V>                           <logcond> ::= ^ <V> <condS> <V>
+        <logcond> ::= _ TRUE                                      <logcond> ::= ^ TRUE
+        <logcond> ::= _ FALSE                                     <logcond> ::= ^ FALSE
+
+        FALSE s 14
+        num s 15
+        TRUE s 16
+        var s 17
+        <logcond> g 18
+        <V> g 19
+
+
+State 6
+        Prior States: 1, 35, 42, 56
+
+        <attr> ::= var _ '=' <E>                                  <attr> ::= var ^ '=' <E>
+
+        '=' s 20
+
+
+State 7
+        Prior States: 1, 35, 42, 56
+
+        <laco> ::= WHILE _ <logcond> <EL>                         <laco> ::= WHILE ^ <logcond> <EL>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+        <logcond> ::= _ <V> <condS> <V>                           <logcond> ::= ^ <V> <condS> <V>
+        <logcond> ::= _ TRUE                                      <logcond> ::= ^ TRUE
+        <logcond> ::= _ FALSE                                     <logcond> ::= ^ FALSE
+
+        FALSE s 14
+        num s 15
+        TRUE s 16
+        var s 17
+        <logcond> g 21
+        <V> g 19
+
+
+State 8
+        Prior States: 1, 35, 42, 56
+
+        <op> ::= <attr> _                                         <op> ::= <attr> ^
+
+        '$' r 2
+        '}' r 2
+        BREAK r 2
+        FOR r 2
+        IF r 2
+        var r 2
+        WHILE r 2
+
+
+State 9
+        Prior States: 1, 35, 42, 56
+
+        <op> ::= <cond> _                                         <op> ::= <cond> ^
+
+        '$' r 3
+        '}' r 3
+        BREAK r 3
+        FOR r 3
+        IF r 3
+        var r 3
+        WHILE r 3
+
+
+State 10
+        Prior States: 1, 35, 42, 56
+
+        <op> ::= <laco> _                                         <op> ::= <laco> ^
+
+        '$' r 4
+        '}' r 4
+        BREAK r 4
+        FOR r 4
+        IF r 4
+        var r 4
+        WHILE r 4
+
+
+State 11
+        Prior States: 1, 35, 42, 56
+
+        <escopo> ::= <escopo> <op> _                              <escopo> ::= <escopo> <op> ^
+
+        '$' r 0
+        '}' r 0
+        BREAK r 0
+        FOR r 0
+        IF r 0
+        var r 0
+        WHILE r 0
+
+
+State 12
+        Prior States: 3
+
+        <init> ::= <S> '$' _                                      <init> ::= <S> '$' ^
+
+        (EOF) r 30
+
+
+State 13
+        Prior States: 4
+
+        <laco> ::= FOR var _ IN var <EL>                          <laco> ::= FOR var ^ IN var <EL>
+
+        IN s 22
+
+
+State 14
+        Prior States: 5, 7
+
+        <logcond> ::= FALSE _                                     <logcond> ::= FALSE ^
+
+        '{' r 20
+
+
+State 15
+        Prior States: 5, 7, 20, 27, 28, 38, 39, 40, 41
+
+        <V> ::= num _                                             <V> ::= num ^
+
+        '-' r 13
+        '$' r 13
+        ')' r 13
+        '*' r 13
+        '/' r 13
+        '{' r 13
+        '}' r 13
+        '+' r 13
+        '<' r 13
+        '==' r 13
+        '>' r 13
+        BREAK r 13
+        FOR r 13
+        IF r 13
+        var r 13
+        WHILE r 13
+
+
+State 16
+        Prior States: 5, 7
+
+        <logcond> ::= TRUE _                                      <logcond> ::= TRUE ^
+
+        '{' r 19
+
+
+State 17
+        Prior States: 5, 7, 20, 27, 28, 38, 39, 40, 41
+
+        <V> ::= var _                                             <V> ::= var ^
+
+        '-' r 12
+        '$' r 12
+        ')' r 12
+        '*' r 12
+        '/' r 12
+        '{' r 12
+        '}' r 12
+        '+' r 12
+        '<' r 12
+        '==' r 12
+        '>' r 12
+        BREAK r 12
+        FOR r 12
+        IF r 12
+        var r 12
+        WHILE r 12
+
+
+State 18
+        Prior States: 5
+
+        <cond> ::= IF <logcond> _ '{' <escopo> '}' <cond2>        <cond> ::= IF <logcond> ^ '{' <escopo> '}' <cond2>
+
+        '{' s 23
+
+
+State 19
+        Prior States: 5, 7
+
+        <logcond> ::= <V> _ <condS> <V>                           <logcond> ::= <V> ^ <condS> <V>
+        <condS> ::= _ '<'                                         <condS> ::= ^ '<'
+        <condS> ::= _ '>'                                         <condS> ::= ^ '>'
+        <condS> ::= _ '=='                                        <condS> ::= ^ '=='
+
+        '<' s 24
+        '==' s 25
+        '>' s 26
+        <condS> g 27
+
+
+State 20
+        Prior States: 6
+
+        <attr> ::= var '=' _ <E>                                  <attr> ::= var '=' ^ <E>
+        <E> ::= _ <E> '+' <F>                                     <E> ::= ^ <E> '+' <F>
+        <E> ::= _ <E> '-' <F>                                     <E> ::= ^ <E> '-' <F>
+        <E> ::= _ <E> '*' <F>                                     <E> ::= ^ <E> '*' <F>
+        <E> ::= _ <E> '/' <F>                                     <E> ::= ^ <E> '/' <F>
+        <E> ::= _ <F>                                             <E> ::= ^ <F>
+        <F> ::= _ '(' <E> ')'                                     <F> ::= ^ '(' <E> ')'
+        <F> ::= _ <V>                                             <F> ::= ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        '(' s 28
+        num s 15
+        var s 17
+        <E> g 29
+        <F> g 30
+        <V> g 31
+
+
+State 21
+        Prior States: 7
+
+        <laco> ::= WHILE <logcond> _ <EL>                         <laco> ::= WHILE <logcond> ^ <EL>
+        <EL> ::= _ '{' <escopo> <break> '}'                       <EL> ::= ^ '{' <escopo> <break> '}'
+
+        '{' s 32
+        <EL> g 33
+
+
+State 22
+        Prior States: 13
+
+        <laco> ::= FOR var IN _ var <EL>                          <laco> ::= FOR var IN ^ var <EL>
+
+        var s 34
+
+
+State 23
+        Prior States: 18
+
+        <cond> ::= IF <logcond> '{' _ <escopo> '}' <cond2>        <cond> ::= IF <logcond> '{' ^ <escopo> '}' <cond2>
+        <escopo> ::= _ <escopo> <op>                              <escopo> ::= ^ <escopo> <op>
+        <escopo> ::= _                                            <escopo> ::= ^
+
+        <escopo> g 35
+        '}' r 1
+        FOR r 1
+        IF r 1
+        var r 1
+        WHILE r 1
+
+
+State 24
+        Prior States: 19
+
+        <condS> ::= '<' _                                         <condS> ::= '<' ^
+
+        num r 15
+        var r 15
+
+
+State 25
+        Prior States: 19
+
+        <condS> ::= '==' _                                        <condS> ::= '==' ^
+
+        num r 17
+        var r 17
+
+
+State 26
+        Prior States: 19
+
+        <condS> ::= '>' _                                         <condS> ::= '>' ^
+
+        num r 16
+        var r 16
+
+
+State 27
+        Prior States: 19
+
+        <logcond> ::= <V> <condS> _ <V>                           <logcond> ::= <V> <condS> ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        num s 15
+        var s 17
+        <V> g 36
+
+
+State 28
+        Prior States: 20, 28, 38, 39, 40, 41
+
+        <F> ::= '(' _ <E> ')'                                     <F> ::= '(' ^ <E> ')'
+        <E> ::= _ <E> '+' <F>                                     <E> ::= ^ <E> '+' <F>
+        <E> ::= _ <E> '-' <F>                                     <E> ::= ^ <E> '-' <F>
+        <E> ::= _ <E> '*' <F>                                     <E> ::= ^ <E> '*' <F>
+        <E> ::= _ <E> '/' <F>                                     <E> ::= ^ <E> '/' <F>
+        <E> ::= _ <F>                                             <E> ::= ^ <F>
+        <F> ::= _ '(' <E> ')'                                     <F> ::= ^ '(' <E> ')'
+        <F> ::= _ <V>                                             <F> ::= ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        '(' s 28
+        num s 15
+        var s 17
+        <E> g 37
+        <F> g 30
+        <V> g 31
+
+
+State 29
+        Prior States: 20
+
+        <attr> ::= var '=' <E> _                                  <attr> ::= var '=' <E> ^
+        <E> ::= <E> _ '+' <F>                                     <E> ::= <E> ^ '+' <F>
+        <E> ::= <E> _ '-' <F>                                     <E> ::= <E> ^ '-' <F>
+        <E> ::= <E> _ '*' <F>                                     <E> ::= <E> ^ '*' <F>
+        <E> ::= <E> _ '/' <F>                                     <E> ::= <E> ^ '/' <F>
+
+        '-' s 38
+        '*' s 39
+        '/' s 40
+        '+' s 41
+        '$' r 14
+        '}' r 14
+        BREAK r 14
+        FOR r 14
+        IF r 14
+        var r 14
+        WHILE r 14
+
+
+State 30
+        Prior States: 20, 28
+
+        <E> ::= <F> _                                             <E> ::= <F> ^
+
+        '-' r 9
+        '$' r 9
+        ')' r 9
+        '*' r 9
+        '/' r 9
+        '}' r 9
+        '+' r 9
+        BREAK r 9
+        FOR r 9
+        IF r 9
+        var r 9
+        WHILE r 9
+
+
+State 31
+        Prior States: 20, 28, 38, 39, 40, 41
+
+        <F> ::= <V> _                                             <F> ::= <V> ^
+
+        '-' r 11
+        '$' r 11
+        ')' r 11
+        '*' r 11
+        '/' r 11
+        '}' r 11
+        '+' r 11
+        BREAK r 11
+        FOR r 11
+        IF r 11
+        var r 11
+        WHILE r 11
+
+
+State 32
+        Prior States: 21, 34
+
+        <EL> ::= '{' _ <escopo> <break> '}'                       <EL> ::= '{' ^ <escopo> <break> '}'
+        <escopo> ::= _ <escopo> <op>                              <escopo> ::= ^ <escopo> <op>
+        <escopo> ::= _                                            <escopo> ::= ^
+
+        <escopo> g 42
+        '}' r 1
+        BREAK r 1
+        FOR r 1
+        IF r 1
+        var r 1
+        WHILE r 1
+
+
+State 33
+        Prior States: 21
+
+        <laco> ::= WHILE <logcond> <EL> _                         <laco> ::= WHILE <logcond> <EL> ^
+
+        '$' r 25
+        '}' r 25
+        BREAK r 25
+        FOR r 25
+        IF r 25
+        var r 25
+        WHILE r 25
+
+
+State 34
+        Prior States: 22
+
+        <laco> ::= FOR var IN var _ <EL>                          <laco> ::= FOR var IN var ^ <EL>
+        <EL> ::= _ '{' <escopo> <break> '}'                       <EL> ::= ^ '{' <escopo> <break> '}'
+
+        '{' s 32
+        <EL> g 43
+
+
+State 35
+        Prior States: 23
+
+        <cond> ::= IF <logcond> '{' <escopo> _ '}' <cond2>        <cond> ::= IF <logcond> '{' <escopo> ^ '}' <cond2>
+        <escopo> ::= <escopo> _ <op>                              <escopo> ::= <escopo> ^ <op>
+        <op> ::= _ <attr>                                         <op> ::= ^ <attr>
+        <op> ::= _ <cond>                                         <op> ::= ^ <cond>
+        <op> ::= _ <laco>                                         <op> ::= ^ <laco>
+        <attr> ::= _ var '=' <E>                                  <attr> ::= ^ var '=' <E>
+        <cond> ::= _ IF <logcond> '{' <escopo> '}' <cond2>        <cond> ::= ^ IF <logcond> '{' <escopo> '}' <cond2>
+        <laco> ::= _ WHILE <logcond> <EL>                         <laco> ::= ^ WHILE <logcond> <EL>
+        <laco> ::= _ FOR var IN var <EL>                          <laco> ::= ^ FOR var IN var <EL>
+
+        '}' s 44
+        FOR s 4
+        IF s 5
+        var s 6
+        WHILE s 7
+        <attr> g 8
+        <cond> g 9
+        <laco> g 10
+        <op> g 11
+
+
+State 36
+        Prior States: 27
+
+        <logcond> ::= <V> <condS> <V> _                           <logcond> ::= <V> <condS> <V> ^
+
+        '{' r 18
+
+
+State 37
+        Prior States: 28
+
+        <F> ::= '(' <E> _ ')'                                     <F> ::= '(' <E> ^ ')'
+        <E> ::= <E> _ '+' <F>                                     <E> ::= <E> ^ '+' <F>
+        <E> ::= <E> _ '-' <F>                                     <E> ::= <E> ^ '-' <F>
+        <E> ::= <E> _ '*' <F>                                     <E> ::= <E> ^ '*' <F>
+        <E> ::= <E> _ '/' <F>                                     <E> ::= <E> ^ '/' <F>
+
+        '-' s 38
+        ')' s 45
+        '*' s 39
+        '/' s 40
+        '+' s 41
+
+
+State 38
+        Prior States: 29, 37
+
+        <E> ::= <E> '-' _ <F>                                     <E> ::= <E> '-' ^ <F>
+        <F> ::= _ '(' <E> ')'                                     <F> ::= ^ '(' <E> ')'
+        <F> ::= _ <V>                                             <F> ::= ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        '(' s 28
+        num s 15
+        var s 17
+        <F> g 46
+        <V> g 31
+
+
+State 39
+        Prior States: 29, 37
+
+        <E> ::= <E> '*' _ <F>                                     <E> ::= <E> '*' ^ <F>
+        <F> ::= _ '(' <E> ')'                                     <F> ::= ^ '(' <E> ')'
+        <F> ::= _ <V>                                             <F> ::= ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        '(' s 28
+        num s 15
+        var s 17
+        <F> g 47
+        <V> g 31
+
+
+State 40
+        Prior States: 29, 37
+
+        <E> ::= <E> '/' _ <F>                                     <E> ::= <E> '/' ^ <F>
+        <F> ::= _ '(' <E> ')'                                     <F> ::= ^ '(' <E> ')'
+        <F> ::= _ <V>                                             <F> ::= ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        '(' s 28
+        num s 15
+        var s 17
+        <F> g 48
+        <V> g 31
+
+
+State 41
+        Prior States: 29, 37
+
+        <E> ::= <E> '+' _ <F>                                     <E> ::= <E> '+' ^ <F>
+        <F> ::= _ '(' <E> ')'                                     <F> ::= ^ '(' <E> ')'
+        <F> ::= _ <V>                                             <F> ::= ^ <V>
+        <V> ::= _ var                                             <V> ::= ^ var
+        <V> ::= _ num                                             <V> ::= ^ num
+
+        '(' s 28
+        num s 15
+        var s 17
+        <F> g 49
+        <V> g 31
+
+
+State 42
+        Prior States: 32
+
+        <EL> ::= '{' <escopo> _ <break> '}'                       <EL> ::= '{' <escopo> ^ <break> '}'
+        <escopo> ::= <escopo> _ <op>                              <escopo> ::= <escopo> ^ <op>
+        <op> ::= _ <attr>                                         <op> ::= ^ <attr>
+        <op> ::= _ <cond>                                         <op> ::= ^ <cond>
+        <op> ::= _ <laco>                                         <op> ::= ^ <laco>
+        <attr> ::= _ var '=' <E>                                  <attr> ::= ^ var '=' <E>
+        <cond> ::= _ IF <logcond> '{' <escopo> '}' <cond2>        <cond> ::= ^ IF <logcond> '{' <escopo> '}' <cond2>
+        <laco> ::= _ WHILE <logcond> <EL>                         <laco> ::= ^ WHILE <logcond> <EL>
+        <laco> ::= _ FOR var IN var <EL>                          <laco> ::= ^ FOR var IN var <EL>
+        <break> ::= _ BREAK                                       <break> ::= ^ BREAK
+        <break> ::= _                                             <break> ::= ^
+
+        BREAK s 50
+        FOR s 4
+        IF s 5
+        var s 6
+        WHILE s 7
+        <attr> g 8
+        <break> g 51
+        <cond> g 9
+        <laco> g 10
+        <op> g 11
+        '}' r 28
+
+
+State 43
+        Prior States: 34
+
+        <laco> ::= FOR var IN var <EL> _                          <laco> ::= FOR var IN var <EL> ^
+
+        '$' r 26
+        '}' r 26
+        BREAK r 26
+        FOR r 26
+        IF r 26
+        var r 26
+        WHILE r 26
+
+
+State 44
+        Prior States: 35
+
+        <cond> ::= IF <logcond> '{' <escopo> '}' _ <cond2>        <cond> ::= IF <logcond> '{' <escopo> '}' ^ <cond2>
+        <cond2> ::= _ ELSE '{' <escopo> '}'                       <cond2> ::= ^ ELSE '{' <escopo> '}'
+        <cond2> ::= _                                             <cond2> ::= ^
+
+        ELSE s 52
+        <cond2> g 53
+        '$' r 23
+        '}' r 23
+        BREAK r 23
+        FOR r 23
+        IF r 23
+        var r 23
+        WHILE r 23
+
+
+State 45
+        Prior States: 37
+
+        <F> ::= '(' <E> ')' _                                     <F> ::= '(' <E> ')' ^
+
+        '-' r 10
+        '$' r 10
+        ')' r 10
+        '*' r 10
+        '/' r 10
+        '}' r 10
+        '+' r 10
+        BREAK r 10
+        FOR r 10
+        IF r 10
+        var r 10
+        WHILE r 10
+
+
+State 46
+        Prior States: 38
+
+        <E> ::= <E> '-' <F> _                                     <E> ::= <E> '-' <F> ^
+
+        '-' r 6
+        '$' r 6
+        ')' r 6
+        '*' r 6
+        '/' r 6
+        '}' r 6
+        '+' r 6
+        BREAK r 6
+        FOR r 6
+        IF r 6
+        var r 6
+        WHILE r 6
+
+
+State 47
+        Prior States: 39
+
+        <E> ::= <E> '*' <F> _                                     <E> ::= <E> '*' <F> ^
+
+        '-' r 7
+        '$' r 7
+        ')' r 7
+        '*' r 7
+        '/' r 7
+        '}' r 7
+        '+' r 7
+        BREAK r 7
+        FOR r 7
+        IF r 7
+        var r 7
+        WHILE r 7
+
+
+State 48
+        Prior States: 40
+
+        <E> ::= <E> '/' <F> _                                     <E> ::= <E> '/' <F> ^
+
+        '-' r 8
+        '$' r 8
+        ')' r 8
+        '*' r 8
+        '/' r 8
+        '}' r 8
+        '+' r 8
+        BREAK r 8
+        FOR r 8
+        IF r 8
+        var r 8
+        WHILE r 8
+
+
+State 49
+        Prior States: 41
+
+        <E> ::= <E> '+' <F> _                                     <E> ::= <E> '+' <F> ^
+
+        '-' r 5
+        '$' r 5
+        ')' r 5
+        '*' r 5
+        '/' r 5
+        '}' r 5
+        '+' r 5
+        BREAK r 5
+        FOR r 5
+        IF r 5
+        var r 5
+        WHILE r 5
+
+
+State 50
+        Prior States: 42
+
+        <break> ::= BREAK _                                       <break> ::= BREAK ^
+
+        '}' r 27
+
+
+State 51
+        Prior States: 42
+
+        <EL> ::= '{' <escopo> <break> _ '}'                       <EL> ::= '{' <escopo> <break> ^ '}'
+
+        '}' s 54
+
+
+State 52
+        Prior States: 44
+
+        <cond2> ::= ELSE _ '{' <escopo> '}'                       <cond2> ::= ELSE ^ '{' <escopo> '}'
+
+        '{' s 55
+
+
+State 53
+        Prior States: 44
+
+        <cond> ::= IF <logcond> '{' <escopo> '}' <cond2> _        <cond> ::= IF <logcond> '{' <escopo> '}' <cond2> ^
+
+        '$' r 21
+        '}' r 21
+        BREAK r 21
+        FOR r 21
+        IF r 21
+        var r 21
+        WHILE r 21
+
+
+State 54
+        Prior States: 51
+
+        <EL> ::= '{' <escopo> <break> '}' _                       <EL> ::= '{' <escopo> <break> '}' ^
+
+        '$' r 24
+        '}' r 24
+        BREAK r 24
+        FOR r 24
+        IF r 24
+        var r 24
+        WHILE r 24
+
+
+State 55
+        Prior States: 52
+
+        <cond2> ::= ELSE '{' _ <escopo> '}'                       <cond2> ::= ELSE '{' ^ <escopo> '}'
+        <escopo> ::= _ <escopo> <op>                              <escopo> ::= ^ <escopo> <op>
+        <escopo> ::= _                                            <escopo> ::= ^
+
+        <escopo> g 56
+        '}' r 1
+        FOR r 1
+        IF r 1
+        var r 1
+        WHILE r 1
+
+
+State 56
+        Prior States: 55
+
+        <cond2> ::= ELSE '{' <escopo> _ '}'                       <cond2> ::= ELSE '{' <escopo> ^ '}'
+        <escopo> ::= <escopo> _ <op>                              <escopo> ::= <escopo> ^ <op>
+        <op> ::= _ <attr>                                         <op> ::= ^ <attr>
+        <op> ::= _ <cond>                                         <op> ::= ^ <cond>
+        <op> ::= _ <laco>                                         <op> ::= ^ <laco>
+        <attr> ::= _ var '=' <E>                                  <attr> ::= ^ var '=' <E>
+        <cond> ::= _ IF <logcond> '{' <escopo> '}' <cond2>        <cond> ::= ^ IF <logcond> '{' <escopo> '}' <cond2>
+        <laco> ::= _ WHILE <logcond> <EL>                         <laco> ::= ^ WHILE <logcond> <EL>
+        <laco> ::= _ FOR var IN var <EL>                          <laco> ::= ^ FOR var IN var <EL>
+
+        '}' s 57
+        FOR s 4
+        IF s 5
+        var s 6
+        WHILE s 7
+        <attr> g 8
+        <cond> g 9
+        <laco> g 10
+        <op> g 11
+
+
+State 57
+        Prior States: 56
+
+        <cond2> ::= ELSE '{' <escopo> '}' _                       <cond2> ::= ELSE '{' <escopo> '}' ^
+
+        '$' r 22
+        '}' r 22
+        BREAK r 22
+        FOR r 22
+        IF r 22
+        var r 22
+        WHILE r 22
+
+
+
+
+========================================
+System Log
+========================================
+
+Grammar        Success           The grammar was successfully analyzed
+LALR States    Success           LALR Table was succesfully created
+DFA States     Success           The DFA State Table was successfully created
+System         Success           The grammar was successfully analyzed and tables were created.

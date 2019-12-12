@@ -1,0 +1,459 @@
+State 0
+<escopo> g 1
+<init> g 2
+<S> g 3
+'$' r 1
+FOR r 1
+IF r 1
+var r 1
+WHILE r 1
+
+State 1
+FOR s 4
+IF s 5
+var s 6
+WHILE s 7
+<attr> g 8
+<cond> g 9
+<laco> g 10
+<op> g 11
+'$' r 29
+
+State 2
+(EOF) a
+
+State 3
+'$' s 12
+
+State 4
+var s 13
+
+State 5
+FALSE s 14
+num s 15
+TRUE s 16
+var s 17
+<logcond> g 18
+<V> g 19
+
+State 6
+'=' s 20
+
+State 7
+FALSE s 14
+num s 15
+TRUE s 16
+var s 17
+<logcond> g 21
+<V> g 19
+
+State 8
+'$' r 2
+'}' r 2
+BREAK r 2
+FOR r 2
+IF r 2
+var r 2
+WHILE r 2
+
+State 9
+'$' r 3
+'}' r 3
+BREAK r 3
+FOR r 3
+IF r 3
+var r 3
+WHILE r 3
+
+State 10
+'$' r 4
+'}' r 4
+BREAK r 4
+FOR r 4
+IF r 4
+var r 4
+WHILE r 4
+
+State 11
+'$' r 0
+'}' r 0
+BREAK r 0
+FOR r 0
+IF r 0
+var r 0
+WHILE r 0
+
+State 12
+(EOF) r 30
+
+State 13
+IN s 22
+
+State 14
+'{' r 20
+
+State 15
+'-' r 13
+'$' r 13
+')' r 13
+'*' r 13
+'/' r 13
+'{' r 13
+'}' r 13
+'+' r 13
+'<' r 13
+'==' r 13
+'>' r 13
+BREAK r 13
+FOR r 13
+IF r 13
+var r 13
+WHILE r 13
+
+State 16
+'{' r 19
+
+State 17
+'-' r 12
+'$' r 12
+')' r 12
+'*' r 12
+'/' r 12
+'{' r 12
+'}' r 12
+'+' r 12
+'<' r 12
+'==' r 12
+'>' r 12
+BREAK r 12
+FOR r 12
+IF r 12
+var r 12
+WHILE r 12
+
+State 18
+'{' s 23
+
+State 19
+'<' s 24
+'==' s 25
+'>' s 26
+<condS> g 27
+
+State 20
+'(' s 28
+num s 15
+var s 17
+<E> g 29
+<F> g 30
+<V> g 31
+
+State 21
+'{' s 32
+<EL> g 33
+
+State 22
+var s 34
+
+State 23
+<escopo> g 35
+'}' r 1
+FOR r 1
+IF r 1
+var r 1
+WHILE r 1
+
+State 24
+num r 15
+var r 15
+
+State 25
+num r 17
+var r 17
+
+State 26
+num r 16
+var r 16
+
+State 27
+num s 15
+var s 17
+<V> g 36
+
+State 28
+'(' s 28
+num s 15
+var s 17
+<E> g 37
+<F> g 30
+<V> g 31
+
+State 29
+'-' s 38
+'*' s 39
+'/' s 40
+'+' s 41
+'$' r 14
+'}' r 14
+BREAK r 14
+FOR r 14
+IF r 14
+var r 14
+WHILE r 14
+
+State 30
+'-' r 9
+'$' r 9
+')' r 9
+'*' r 9
+'/' r 9
+'}' r 9
+'+' r 9
+BREAK r 9
+FOR r 9
+IF r 9
+var r 9
+WHILE r 9
+
+State 31
+'-' r 11
+'$' r 11
+')' r 11
+'*' r 11
+'/' r 11
+'}' r 11
+'+' r 11
+BREAK r 11
+FOR r 11
+IF r 11
+var r 11
+WHILE r 11
+
+State 32
+<escopo> g 42
+'}' r 1
+BREAK r 1
+FOR r 1
+IF r 1
+var r 1
+WHILE r 1
+
+State 33
+'$' r 25
+'}' r 25
+BREAK r 25
+FOR r 25
+IF r 25
+var r 25
+WHILE r 25
+
+State 34
+'{' s 32
+<EL> g 43
+
+State 35
+'}' s 44
+FOR s 4
+IF s 5
+var s 6
+WHILE s 7
+<attr> g 8
+<cond> g 9
+<laco> g 10
+<op> g 11
+
+State 36
+'{' r 18
+
+State 37
+'-' s 38
+')' s 45
+'*' s 39
+'/' s 40
+'+' s 41
+
+State 38
+'(' s 28
+num s 15
+var s 17
+<F> g 46
+<V> g 31
+
+State 39
+'(' s 28
+num s 15
+var s 17
+<F> g 47
+<V> g 31
+
+State 40
+'(' s 28
+num s 15
+var s 17
+<F> g 48
+<V> g 31
+
+State 41
+'(' s 28
+num s 15
+var s 17
+<F> g 49
+<V> g 31
+
+State 42
+BREAK s 50
+FOR s 4
+IF s 5
+var s 6
+WHILE s 7
+<attr> g 8
+<break> g 51
+<cond> g 9
+<laco> g 10
+<op> g 11
+'}' r 28
+
+State 43
+'$' r 26
+'}' r 26
+BREAK r 26
+FOR r 26
+IF r 26
+var r 26
+WHILE r 26
+
+State 44
+ELSE s 52
+<cond2> g 53
+'$' r 23
+'}' r 23
+BREAK r 23
+FOR r 23
+IF r 23
+var r 23
+WHILE r 23
+
+State 45
+'-' r 10
+'$' r 10
+')' r 10
+'*' r 10
+'/' r 10
+'}' r 10
+'+' r 10
+BREAK r 10
+FOR r 10
+IF r 10
+var r 10
+WHILE r 10
+
+State 46
+'-' r 6
+'$' r 6
+')' r 6
+'*' r 6
+'/' r 6
+'}' r 6
+'+' r 6
+BREAK r 6
+FOR r 6
+IF r 6
+var r 6
+WHILE r 6
+
+State 47
+'-' r 7
+'$' r 7
+')' r 7
+'*' r 7
+'/' r 7
+'}' r 7
+'+' r 7
+BREAK r 7
+FOR r 7
+IF r 7
+var r 7
+WHILE r 7
+
+State 48
+'-' r 8
+'$' r 8
+')' r 8
+'*' r 8
+'/' r 8
+'}' r 8
+'+' r 8
+BREAK r 8
+FOR r 8
+IF r 8
+var r 8
+WHILE r 8
+
+State 49
+'-' r 5
+'$' r 5
+')' r 5
+'*' r 5
+'/' r 5
+'}' r 5
+'+' r 5
+BREAK r 5
+FOR r 5
+IF r 5
+var r 5
+WHILE r 5
+
+State 50
+'}' r 27
+
+State 51
+'}' s 54
+
+State 52
+'{' s 55
+
+State 53
+'$' r 21
+'}' r 21
+BREAK r 21
+FOR r 21
+IF r 21
+var r 21
+WHILE r 21
+
+State 54
+'$' r 24
+'}' r 24
+BREAK r 24
+FOR r 24
+IF r 24
+var r 24
+WHILE r 24
+
+State 55
+<escopo> g 56
+'}' r 1
+FOR r 1
+IF r 1
+var r 1
+WHILE r 1
+
+State 56
+'}' s 57
+FOR s 4
+IF s 5
+var s 6
+WHILE s 7
+<attr> g 8
+<cond> g 9
+<laco> g 10
+<op> g 11
+
+State 57
+'$' r 22
+'}' r 22
+BREAK r 22
+FOR r 22
+IF r 22
+var r 22
+WHILE r 22

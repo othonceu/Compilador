@@ -1,0 +1,31 @@
+0 <escopo> ::= <escopo> <op>
+1 <escopo> ::= 
+2 <op> ::= <attr>
+3 <op> ::= <cond>
+4 <op> ::= <laco>
+5 <E> ::= <E> '+' <F>
+6 <E> ::= <E> '-' <F>
+7 <E> ::= <E> '*' <F>
+8 <E> ::= <E> '/' <F>
+9 <E> ::= <F>
+10 <F> ::= '(' <E> ')'
+11 <F> ::= <V>
+12 <V> ::= var
+13 <V> ::= num
+14 <attr> ::= var '=' <E>
+15 <condS> ::= '<'
+16 <condS> ::= '>'
+17 <condS> ::= '=='
+18 <logcond> ::= <V> <condS> <V>
+19 <logcond> ::= TRUE
+20 <logcond> ::= FALSE
+21 <cond> ::= IF <logcond> '{' <escopo> '}' <cond2>
+22 <cond2> ::= ELSE '{' <escopo> '}'
+23 <cond2> ::= 
+24 <EL> ::= '{' <escopo> <break> '}'
+25 <laco> ::= WHILE <logcond> <EL>
+26 <laco> ::= FOR var IN var <EL>
+27 <break> ::= BREAK
+28 <break> ::= 
+29 <S> ::= <escopo>
+30 <init> ::= <S> '$'

@@ -1,0 +1,50 @@
+"Start Symbol" = <init>
+
+
+<escopo> ::= <escopo> <op>
+           |
+   
+<op> ::= <attr>
+       | <cond>
+       | <laco>
+
+<E> ::= <E> '+' <F>
+      | <E> '-' <F>
+      | <E> '*' <F>
+      | <E> '/' <F>
+      | <F>
+     
+<F> ::= '(' <E> ')'
+      | <V>
+     
+<V> ::= 'var'
+     | 'num'
+     
+
+<attr> ::= 'var' '=' <E>
+
+<condS> ::= '<'
+          | '>'
+          | '=='
+
+<logcond> ::= <V> <condS> <V>
+            | 'TRUE'
+            | 'FALSE'
+
+<cond> ::= 'IF' <logcond> '{' <escopo> '}' <cond2>
+        
+<cond2> ::= 'ELSE' '{' <escopo> '}'
+         |
+           
+<EL> ::= '{' <escopo> <break> '}'
+
+<laco> ::= 'WHILE' <logcond> <EL>
+         | 'FOR' 'var' 'IN' 'var' <EL>
+
+<break> ::= 'BREAK'
+          | 
+
+          
+<S> ::= <escopo>
+
+<init> ::= <S>'$'
